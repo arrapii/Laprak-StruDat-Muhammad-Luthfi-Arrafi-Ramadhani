@@ -5,29 +5,33 @@
 #include <iostream>
 using namespace std;
 
-string satuan[] = {"nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan"};
-string belasan[] = {"sepuluh", "sebelas", "dua belas", "tiga belas", "empat belas", "lima belas", "enam belas", "tujuh belas", "delapan belas", "sembilan belas"};
-string puluhan[] = {"", "", "dua puluh", "tiga puluh", "empat puluh", "lima puluh", "enam puluh", "tujuh puluh", "delapan puluh", "sembilan puluh"};
-
-string angkaKeTulisan(int n) {
-    if (n == 100) return "seratus";
-    if (n < 10) return satuan[n];
-    if (n < 20) return belasan[n - 10];
-    int puluh = n / 10;
-    int satu = n % 10;
-    if (satu == 0) return puluhan[puluh]; 
-    return puluhan[puluh] + " " + satuan[satu];
-}
-
 int main() {
-    int angka;
-    cout << "Masukkan angka (0-100): ";
-    cin >> angka;
+    int N;
+    cout << "Masukkan jumlah bilangan (N): ";
+    cin >> N;
 
-    if (angka < 0 || angka > 100) {
-        cout << "Angka di luar jangkauan!" << endl;
-    } else {
-        cout << angka << " : " << angkaKeTulisan(angka) << endl;
+    int *arr = new int[N];
+
+    cout << "Masukkan " << N << " bilangan:\n";
+    for (int *p = arr; p < arr + N; ++p) {
+        cout << "  Bilangan ke-" << (p - arr + 1) << ": ";
+        cin >> *p;
     }
+
+    int jumlah = 0, maks = *arr, min = *arr;
+    for (int *p = arr; p < arr + N; ++p) {
+        jumlah += *p;
+        if (*p > maks) maks = *p;
+        if (*p < min) min = *p;
+    }
+
+    cout << "\nHasil Perhitungan:\n";
+    cout << "Jumlah      = " << jumlah << endl;
+    cout << "Nilai Maks  = " << maks << endl;
+    cout << "Nilai Min   = " << min << endl;
+
+    delete[] arr;
     return 0;
 }
+
+

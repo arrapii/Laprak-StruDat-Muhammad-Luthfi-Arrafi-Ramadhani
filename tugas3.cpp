@@ -5,31 +5,46 @@
 #include <iostream>
 using namespace std;
 
+float hitungRata(float nilai[], int n) {
+    float total = 0;
+    for (int i = 0; i < n; i++) {
+        total += nilai[i];
+    }
+    return total / n;
+}
+
+void cariMaksMin(float nilai[], int n, float &maks, float &min) {
+    maks = nilai[0];
+    min  = nilai[0];
+    for (int i = 1; i < n; i++) {
+        if (nilai[i] > maks)
+            maks = nilai[i];
+        if (nilai[i] < min)
+            min = nilai[i];
+    }
+}
+
 int main() {
-    int n;
-    cout << "input: ";
-    cin >> n;
-    cout << "output:" << endl;
+    int N;
+    cout << "Masukkan jumlah siswa: ";
+    cin >> N;
 
-    for (int i = n; i >= 1; i--) {
-        for (int spasi = 0; spasi < n - i; spasi++) {
-            cout << "  ";
-        }
- 
-        for (int j = i; j >= 1; j--) {
-            cout << j << " ";
-        }
-        cout << "* ";
+    float nilai[N];
 
-        for (int j = 1; j <= i; j++) {
-            cout << j << " ";
-        }
-        cout << endl;
+    cout << "\n=== INPUT NILAI SISWA ===\n";
+    for (int i = 0; i < N; i++) {
+        cout << "Nilai siswa ke-" << i + 1 << ": ";
+        cin >> nilai[i];
     }
-   
-    for (int spasi = 0; spasi < n; spasi++) {
-        cout << "  ";
-    }
-    cout << "*" << endl;
+
+    float rata = hitungRata(nilai, N);
+    float maks, min;
+    cariMaksMin(nilai, N, maks, min);
+
+    cout << "\n=== HASIL PERHITUNGAN ===\n";
+    cout << "Rata-rata kelas : " << rata << endl;
+    cout << "Nilai tertinggi : " << maks << endl;
+    cout << "Nilai terendah  : " << min << endl;
+
     return 0;
 }
