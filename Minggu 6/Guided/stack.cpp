@@ -5,7 +5,7 @@ struct Node
 {
     int data;
     Node *next;
-};
+}; 
 
 bool isEmpty(Node *top)
 {
